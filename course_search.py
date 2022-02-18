@@ -65,6 +65,9 @@ def topmenu():
             schedule = schedule.description(desc)
         elif command in ['w', 'no_waiting']:
             schedule = schedule.no_waiting()
+        elif command in ['d', 'days']:
+            days_input = input("enter the days of the class")
+            schedule = schedule.days(days_input)
         else:
             print('command', command, 'is not supported')
             continue
