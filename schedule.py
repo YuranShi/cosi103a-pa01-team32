@@ -49,4 +49,7 @@ class Schedule():
         else:
             print("can't sort by "+str(field)+" yet")
             return self
- 
+    
+    def title(self,phrase):
+        '''filters courses containing the phrase in their title'''
+        
