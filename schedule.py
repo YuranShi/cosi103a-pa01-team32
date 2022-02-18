@@ -43,6 +43,10 @@ class Schedule():
         ''' subject filters the courses by subject '''
         return Schedule([course for course in self.courses if course['subject'] in subjects])
 
+    def course(self, subject, course_num):
+        ''' subject filters the courses by the subject and the course number '''
+        return Schedule([course for course in self.courses if (course['code'][0] == subject and course['code'][1] == course_num)])
+
     def sort(self,field):
         if field=='subject':
             return Schedule(sorted(self.courses, key= lambda course: course['subject']))
@@ -52,7 +56,7 @@ class Schedule():
     
     def title(self,phrase):
         '''title filters courses containing the phrase in their title'''
-        return Schedule([course for course in self.courses if phrase in course['title']])
+        return Schedule([course for course in self.courses if phrase in course['name']])
     
     def description(self,phrase):
         '''description filters courses containing the phrase in the description'''
@@ -61,4 +65,8 @@ class Schedule():
     def days(self,days_of_week):
         '''days filters classes held on days_of_week'''
         return Schedule([course for course in self.courses if all(day in days_of_week for day in course['times']['days'])])
-        
+
+    def no_waiting(self):
+        '''no_waiting filters courses has no one in the waiting list'''
+        return Schedule([course for course in self.courses if course['waiting'] == 0])
+
