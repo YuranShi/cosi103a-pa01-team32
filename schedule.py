@@ -51,5 +51,14 @@ class Schedule():
             return self
     
     def title(self,phrase):
-        '''filters courses containing the phrase in their title'''
+        '''title filters courses containing the phrase in their title'''
+        return Schedule([course for course in self.courses if phrase in course['title']])
+    
+    def description(self,phrase):
+        '''description filters courses containing the phrase in the description'''
+        return Schedule([course for course in self.courses if phrase in course['description']])
+    
+    def days(self,days_of_week):
+        '''days filters classes held on days_of_week'''
+        return Schedule([course for course in self.courses if all(day in days_of_week for day in course['times']['days'])])
         
